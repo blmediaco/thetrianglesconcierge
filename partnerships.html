@@ -82,6 +82,29 @@
   .tier-card:nth-child(2) .tier-cta:hover { background: var(--forest-mid); }
   .tier-card:nth-child(3) .tier-cta { background: var(--gold); color: var(--forest); font-weight: 500; }
   .tier-card:nth-child(3) .tier-cta:hover { background: #b8963c; }
+  .partner-process { background: var(--forest); padding: 7rem 3rem; }
+  .partner-process-inner { max-width: 1300px; margin: 0 auto; }
+  .partner-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-top: 3rem; }
+  .partner-step { background: rgba(255,255,255,0.03); border: 0.5px solid rgba(196,163,90,0.12); padding: 2rem; border-radius: 2px; }
+  .partner-step-num { width: 42px; height: 42px; border-radius: 50%; border: 0.5px solid rgba(196,163,90,0.28); display: flex; align-items: center; justify-content: center; color: var(--gold-light); font-family: var(--font-display); font-size: 1rem; margin-bottom: 1.25rem; }
+  .partner-step h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 400; color: var(--white); margin-bottom: 0.75rem; }
+  .partner-step p { font-size: 0.82rem; color: rgba(255,255,255,0.58); line-height: 1.85; font-weight: 300; }
+  .partner-proof { background: var(--cream-dark); padding: 7rem 3rem; }
+  .partner-proof-inner { max-width: 1300px; margin: 0 auto; }
+  .proof-grid-alt { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 2rem; margin-top: 3rem; align-items: start; }
+  .proof-note { background: var(--white); padding: 2.5rem; border: 0.5px solid rgba(28,43,30,0.08); border-radius: 2px; }
+  .proof-note blockquote { font-family: var(--font-display); font-size: 1.55rem; line-height: 1.35; color: var(--forest); margin-bottom: 1.2rem; }
+  .proof-note p { font-size: 0.82rem; color: var(--muted); line-height: 1.85; font-weight: 300; }
+  .proof-metrics { display: grid; gap: 1rem; }
+  .proof-metric { background: var(--white); padding: 1.5rem; border-left: 2px solid var(--gold); }
+  .proof-metric strong { display: block; font-family: var(--font-display); font-size: 2rem; font-weight: 400; color: var(--forest); line-height: 1; margin-bottom: 0.3rem; }
+  .proof-metric span { font-size: 0.78rem; color: var(--muted); line-height: 1.7; font-weight: 300; }
+  .partner-faq { background: var(--white); padding: 7rem 3rem; }
+  .partner-faq-inner { max-width: 1300px; margin: 0 auto; }
+  .faq-grid-mini { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 3rem; }
+  .faq-mini { border: 0.5px solid var(--cream-dark); padding: 1.5rem; border-radius: 2px; background: #fcfaf6; }
+  .faq-mini h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 400; color: var(--forest); margin-bottom: 0.65rem; }
+  .faq-mini p { font-size: 0.82rem; color: var(--muted); line-height: 1.85; font-weight: 300; }
 
   /* CONTACT */
   .partner-contact { padding: 8rem 3rem; max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
@@ -102,8 +125,13 @@
   .form-group input, .form-group select, .form-group textarea { border: 0.5px solid var(--cream-dark); border-radius: 2px; padding: 0.75rem 1rem; font-family: var(--font-body); font-size: 0.85rem; color: var(--charcoal); background: var(--cream); outline: none; transition: border-color 0.2s; font-weight: 300; }
   .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--sage); }
   .form-group textarea { resize: vertical; min-height: 100px; }
-  .form-submit { width: 100%; background: var(--forest); color: var(--cream); border: none; padding: 1rem; font-family: var(--font-body); font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; border-radius: 2px; cursor: pointer; transition: background 0.2s; }
+  .form-submit { width: 100%; background: var(--forest); color: var(--cream); border: none; padding: 1rem; font-family: var(--font-body); font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; border-radius: 2px; cursor: pointer; transition: background 0.2s, opacity 0.2s; }
   .form-submit:hover { background: var(--forest-mid); }
+  .form-submit:disabled { opacity: 0.7; cursor: wait; }
+  .form-status { min-height: 1.4rem; margin: 1rem 0 0; font-size: 0.78rem; line-height: 1.6; color: var(--muted); }
+  .form-status.is-success { color: var(--sage); }
+  .form-status.is-error { color: #9b3d2f; }
+  .hp-field { position: absolute; left: -9999px; opacity: 0; pointer-events: none; }
 
   /* FOOTER */
   footer { background: var(--charcoal); padding: 4rem 3rem 2rem; }
@@ -128,9 +156,12 @@
     .section-header { grid-template-columns: 1fr; }
     .who-grid { grid-template-columns: 1fr 1fr; }
     .tiers-grid { grid-template-columns: 1fr; }
+    .partner-steps { grid-template-columns: 1fr 1fr; }
+    .proof-grid-alt { grid-template-columns: 1fr; }
+    .faq-grid-mini { grid-template-columns: 1fr; }
     .partner-contact { grid-template-columns: 1fr; padding: 4rem 1.5rem; }
     .form-row { grid-template-columns: 1fr; }
-    .partner-tiers { padding: 4rem 1.5rem; }
+    .partner-tiers, .partner-process, .partner-proof, .partner-faq { padding: 4rem 1.5rem; }
     .who { padding: 4rem 1.5rem; }
     .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
   }
@@ -262,6 +293,72 @@
   </div>
 </section>
 
+<section class="partner-process">
+  <div class="partner-process-inner">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label">How It Works</div>
+        <h2 class="section-title" style="color: var(--white);">A simple launch.<br><em>Not a heavy lift.</em></h2>
+      </div>
+      <p class="section-desc" style="color: rgba(255,255,255,0.58);">We built the partnership process to be easy on leasing teams, property managers, and operators. We handle the materials, resident-facing flow, and onboarding details so you can offer something premium without adding another operational headache.</p>
+    </div>
+    <div class="partner-steps reveal">
+      <div class="partner-step">
+        <div class="partner-step-num">01</div>
+        <h3>Intro Call</h3>
+        <p>We learn about your property, resident profile, and what kind of partnership makes the most sense.</p>
+      </div>
+      <div class="partner-step">
+        <div class="partner-step-num">02</div>
+        <h3>Custom Setup</h3>
+        <p>We create your resident offer, QR materials, and positioning so the program fits your brand and audience.</p>
+      </div>
+      <div class="partner-step">
+        <div class="partner-step-num">03</div>
+        <h3>Soft Launch</h3>
+        <p>Your team gets a clear rollout path for welcome packets, portals, move-ins, and resident communications.</p>
+      </div>
+      <div class="partner-step">
+        <div class="partner-step-num">04</div>
+        <h3>Ongoing Support</h3>
+        <p>We stay available for reporting, refreshes, and follow-through so the partnership keeps delivering value after launch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="partner-proof">
+  <div class="partner-proof-inner">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label">Why Operators Say Yes</div>
+        <h2 class="section-title">Built to make your<br><em>property look stronger.</em></h2>
+      </div>
+      <p class="section-desc">This is not just a vendor listing. It is a resident experience upgrade you can point to during tours, onboarding, and renewals. The goal is simple: make life easier for residents while making your team look exceptionally well connected.</p>
+    </div>
+    <div class="proof-grid-alt reveal">
+      <div class="proof-note">
+        <blockquote>“The best partnerships feel easy for the property team and elevated for the resident. That is exactly what we are building here.”</blockquote>
+        <p>From welcome-packet placement to white-labeled concierge concepts, every option is designed around minimal internal lift and high resident clarity. No messy handoff. No vague service story. Just a premium resource your community can stand behind confidently.</p>
+      </div>
+      <div class="proof-metrics">
+        <div class="proof-metric">
+          <strong>0 Cost</strong>
+          <span>Directory Listing and Resident Perks partnerships can be resident-direct with no property-side spend.</span>
+        </div>
+        <div class="proof-metric">
+          <strong>1 Team</strong>
+          <span>Cleaning, laundry, errands, and concierge support live under one brand instead of four separate vendor relationships.</span>
+        </div>
+        <div class="proof-metric">
+          <strong>24 Hours</strong>
+          <span>Every partnership inquiry is captured and followed up on quickly so serious interest does not go cold.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="partner-contact" id="partner-contact">
   <div>
     <div class="contact-label">Get In Touch</div>
@@ -276,24 +373,76 @@
   <div class="contact-form-area">
     <h3>Partner Interest Form</h3>
     <p>Tell us a little about your property and what you're looking for.</p>
-    <div class="form-row">
-      <div class="form-group"><label>Your Name</label><input type="text" placeholder="First Last"></div>
-      <div class="form-group"><label>Title / Role</label><input type="text" placeholder="Property Manager"></div>
+    <form id="partner-interest-form" novalidate>
+      <div class="hp-field" aria-hidden="true">
+        <label for="website">Website</label>
+        <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="contactName">Your Name</label>
+          <input id="contactName" name="contactName" type="text" placeholder="First Last" required maxlength="120" autocomplete="name">
+        </div>
+        <div class="form-group">
+          <label for="roleTitle">Title / Role</label>
+          <input id="roleTitle" name="roleTitle" type="text" placeholder="Property Manager" required maxlength="120" autocomplete="organization-title">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="companyName">Property or Company Name</label>
+        <input id="companyName" name="companyName" type="text" placeholder="Luxury at North Hills" required maxlength="160" autocomplete="organization">
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input id="email" name="email" type="email" placeholder="you@property.com" required maxlength="200" autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label for="interest">Partnership Interest</label>
+        <select id="interest" name="interest" required>
+          <option value="">Select one...</option>
+          <option value="Directory Listing / Welcome Packet">Directory Listing / Welcome Packet</option>
+          <option value="Resident Perks / Discount Program">Resident Perks / Discount Program</option>
+          <option value="Branded Concierge Program">Branded Concierge Program</option>
+          <option value="Not sure — tell me more">Not sure — tell me more</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="communityDetails">Tell us about your community</label>
+        <textarea id="communityDetails" name="communityDetails" placeholder="Number of units, location, resident profile, what you're hoping to offer..." required maxlength="3000"></textarea>
+      </div>
+      <button class="form-submit" id="partner-form-submit" type="submit">Send Partnership Inquiry →</button>
+      <p class="form-status" id="partner-form-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<section class="partner-faq">
+  <div class="partner-faq-inner">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label">Quick Answers</div>
+        <h2 class="section-title">Questions before you<br><em>reach out?</em></h2>
+      </div>
+      <p class="section-desc">A few of the most common questions we expect from property teams, operators, and premium residential brands.</p>
     </div>
-    <div class="form-group"><label>Property or Company Name</label><input type="text" placeholder="Luxury at North Hills"></div>
-    <div class="form-group"><label>Email Address</label><input type="email" placeholder="you@property.com"></div>
-    <div class="form-group">
-      <label>Partnership Interest</label>
-      <select>
-        <option value="">Select one...</option>
-        <option>Directory Listing / Welcome Packet</option>
-        <option>Resident Perks / Discount Program</option>
-        <option>Branded Concierge Program</option>
-        <option>Not sure — tell me more</option>
-      </select>
+    <div class="faq-grid-mini reveal">
+      <div class="faq-mini">
+        <h3>Do you need exclusivity?</h3>
+        <p>No. Most partnerships can launch without exclusivity. If you want a more tailored or white-labeled arrangement, we can talk through structure and scope together.</p>
+      </div>
+      <div class="faq-mini">
+        <h3>Can this support new move-ins?</h3>
+        <p>Yes. Resident Perks and Branded Concierge options are both a natural fit for move-in gifts, onboarding packets, and relocation support.</p>
+      </div>
+      <div class="faq-mini">
+        <h3>Can we start small?</h3>
+        <p>Absolutely. Many communities begin with a listing or a resident discount program and expand later once the fit is proven.</p>
+      </div>
+      <div class="faq-mini">
+        <h3>Do you provide branded materials?</h3>
+        <p>Yes. We can provide resident-facing materials, QR handouts, and co-branded support assets so the offer is easy for your team to share.</p>
+      </div>
     </div>
-    <div class="form-group"><label>Tell us about your community</label><textarea placeholder="Number of units, location, resident profile, what you're hoping to offer..."></textarea></div>
-    <button class="form-submit">Send Partnership Inquiry →</button>
   </div>
 </section>
 
@@ -305,8 +454,8 @@
         <p class="footer-tagline">Premium home services for busy professionals across the Raleigh–Durham–Chapel Hill area.</p>
       </div>
       <div class="footer-col"><h4>Services</h4><ul><li><a href="index.html#services">House Cleaning</a></li><li><a href="index.html#services">Laundry Service</a></li><li><a href="index.html#services">Errand Service</a></li><li><a href="index.html#services">Concierge Management</a></li></ul></div>
-      <div class="footer-col"><h4>Company</h4><ul><li><a href="index.html">Home</a></li><li><a href="index.html#pricing">Pricing</a></li><li><a href="partnerships.html">Partnerships</a></li></ul></div>
-      <div class="footer-col"><h4>Get Started</h4><ul><li><a href="index.html#book">Book a Service</a></li><li><a href="#partner-contact">Partner With Us</a></li><li>Contact</li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="index.html">Home</a></li><li><a href="index.html#pricing">Pricing</a></li><li><a href="partnerships.html">Partnerships</a></li><li><a href="faq.html">FAQs</a></li></ul></div>
+      <div class="footer-col"><h4>Get Started</h4><ul><li><a href="index.html#book">Book a Service</a></li><li><a href="#partner-contact">Partner With Us</a></li><li><a href="#partner-contact">Contact</a></li></ul></div>
     </div>
     <div class="footer-bottom">
       <div class="footer-copy">© 2026 The Triangle's Concierge. All rights reserved.</div>
@@ -315,8 +464,72 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script>
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  reveals.forEach((element) => observer.observe(element));
+
+  const partnerForm = document.getElementById('partner-interest-form');
+  const submitButton = document.getElementById('partner-form-submit');
+  const statusMessage = document.getElementById('partner-form-status');
+  const defaultButtonLabel = submitButton.textContent;
+
+  function setFormStatus(message, state) {
+    statusMessage.textContent = message;
+    statusMessage.className = 'form-status';
+
+    if (state) {
+      statusMessage.classList.add(`is-${state}`);
+    }
+  }
+
+  partnerForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    if (!partnerForm.reportValidity()) {
+      return;
+    }
+
+    const formData = new FormData(partnerForm);
+    const payload = Object.fromEntries(formData.entries());
+
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending...';
+    setFormStatus('Saving your partnership inquiry...', null);
+
+    try {
+      const response = await fetch('/api/partnership-inquiry', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Unable to send your inquiry right now.');
+      }
+
+      partnerForm.reset();
+      setFormStatus('Thanks. Your inquiry was received and saved. We will follow up within 24 hours.', 'success');
+    } catch (error) {
+      setFormStatus(error.message || 'Unable to send your inquiry right now.', 'error');
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = defaultButtonLabel;
+    }
+  });
+</script>
+</body>
+</html>

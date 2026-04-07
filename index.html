@@ -160,6 +160,32 @@ nav.scrolled{background:rgba(13,24,16,0.96);backdrop-filter:blur(16px);padding:1
 .why-desc{font-size:0.82rem;color:rgba(200,191,168,0.45);line-height:1.9;font-weight:300;}
 .why-stat{margin-top:2rem;font-family:var(--F);font-size:3rem;font-weight:400;color:var(--gold-light);line-height:1;}
 .why-stat-label{font-size:0.65rem;letter-spacing:0.12em;color:rgba(200,191,168,0.3);text-transform:uppercase;margin-top:0.35rem;}
+.booking-intake{background:linear-gradient(180deg,var(--ink),#121f14 35%,var(--forest));padding:9rem 3.5rem;position:relative;overflow:hidden;}
+.booking-intake::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 20%,rgba(201,168,76,0.08),transparent 28%),radial-gradient(circle at 85% 15%,rgba(143,175,148,0.08),transparent 25%);}
+.booking-intake-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:0.95fr 1.05fr;gap:4rem;align-items:start;position:relative;z-index:1;}
+.booking-intake-copy .section-title{margin-bottom:1.5rem;}
+.booking-intake-copy p{font-size:0.9rem;color:rgba(200,191,168,0.58);line-height:1.9;font-weight:300;max-width:500px;}
+.booking-highlights{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem;}
+.booking-highlight{background:rgba(255,255,255,0.03);border:1px solid rgba(201,168,76,0.08);padding:1.25rem 1.1rem;border-radius:2px;}
+.booking-highlight strong{display:block;font-size:0.7rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:0.45rem;font-weight:500;}
+.booking-highlight span{font-size:0.8rem;color:rgba(200,191,168,0.52);line-height:1.75;font-weight:300;}
+.intake-card{background:rgba(13,24,16,0.82);border:1px solid rgba(201,168,76,0.12);padding:2.5rem;border-radius:2px;backdrop-filter:blur(12px);}
+.intake-card h3{font-family:var(--F);font-size:2rem;font-weight:400;color:var(--cream);margin-bottom:0.45rem;}
+.intake-card p{font-size:0.82rem;color:rgba(200,191,168,0.48);font-weight:300;margin-bottom:1.8rem;}
+.intake-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.intake-group{display:flex;flex-direction:column;gap:0.45rem;margin-bottom:1rem;}
+.intake-group label{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(200,191,168,0.55);}
+.intake-group input,.intake-group select,.intake-group textarea{border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);color:var(--cream);font-family:var(--B);font-size:0.88rem;padding:0.9rem 1rem;border-radius:2px;outline:none;transition:border-color 0.2s,background 0.2s;}
+.intake-group input:focus,.intake-group select:focus,.intake-group textarea:focus{border-color:rgba(201,168,76,0.45);background:rgba(255,255,255,0.05);}
+.intake-group textarea{resize:vertical;min-height:120px;}
+.intake-group option{color:#0D1810;}
+.intake-submit{width:100%;border:none;background:var(--gold);color:var(--ink);padding:1rem 1.25rem;font-family:var(--B);font-size:0.74rem;letter-spacing:0.18em;text-transform:uppercase;border-radius:2px;font-weight:500;cursor:pointer;transition:background 0.2s,opacity 0.2s;}
+.intake-submit:hover{background:var(--gold-light);}
+.intake-submit:disabled{opacity:0.75;cursor:wait;}
+.intake-status{min-height:1.5rem;margin-top:1rem;font-size:0.78rem;line-height:1.6;color:rgba(200,191,168,0.5);}
+.intake-status.is-success{color:var(--sage-light);}
+.intake-status.is-error{color:#f0a08f;}
+.hp-field{position:absolute;left:-9999px;opacity:0;pointer-events:none;}
 .final-cta{background:var(--forest);padding:10rem 3.5rem;text-align:center;position:relative;overflow:hidden;}
 .final-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(201,168,76,0.06),transparent 50%),radial-gradient(ellipse at 80% 50%,rgba(201,168,76,0.04),transparent 50%);}
 .final-cta-inner{position:relative;z-index:1;max-width:700px;margin:0 auto;}
@@ -190,7 +216,7 @@ footer{background:var(--ink);border-top:1px solid rgba(201,168,76,0.07);padding:
 @media(max-width:1024px){
   nav{padding:1.25rem 2rem;}
   .hero{padding:0 2rem 4rem;}
-  .services,.process,.pricing,.laundry,.proof,.why,.final-cta{padding:5rem 2rem;}
+  .services,.process,.pricing,.laundry,.proof,.why,.booking-intake,.final-cta{padding:5rem 2rem;}
   footer{padding:3rem 2rem 2rem;}
   .services-list{grid-template-columns:1fr;}
   .steps-grid{grid-template-columns:1fr 1fr;gap:2.5rem;}
@@ -202,6 +228,8 @@ footer{background:var(--ink);border-top:1px solid rgba(201,168,76,0.07);padding:
   .proof-grid{grid-template-columns:1fr;}
   .why-grid{grid-template-columns:1fr;}
   .why-card.tall{grid-row:auto;}
+  .booking-intake-inner{grid-template-columns:1fr;gap:2.5rem;}
+  .intake-row,.booking-highlights{grid-template-columns:1fr;}
   .footer-top{grid-template-columns:1fr 1fr;gap:2rem;}
   .hero-bottom{flex-direction:column;align-items:flex-start;gap:2rem;}
   .hero-vertical,.scroll-line{display:none;}
@@ -229,7 +257,6 @@ footer{background:var(--ink);border-top:1px solid rgba(201,168,76,0.07);padding:
     <li><a href="#book" class="nav-book">Book Now</a></li>
   </ul>
 </nav>
-
 <section class="hero" id="home">
   <div class="hero-grid"></div>
   <div class="hero-bg-word">Premier</div>
@@ -510,13 +537,102 @@ footer{background:var(--ink);border-top:1px solid rgba(201,168,76,0.07);padding:
   </div>
 </section>
 
-<section class="final-cta" id="book">
+<section class="booking-intake" id="book">
+  <div class="booking-intake-inner">
+    <div class="booking-intake-copy reveal">
+      <div class="section-eyebrow"><span>Start Here</span></div>
+      <h2 class="section-title">Tell us what you need.<br><em>We will follow up.</em></h2>
+      <p>If you are an individual client interested in cleaning, laundry, errands, or ongoing concierge support, this is the place to raise your hand. Send us a few details and we will reach out with the right next step for your home.</p>
+      <div class="booking-highlights">
+        <div class="booking-highlight">
+          <strong>Individual Clients</strong>
+          <span>Built for homeowners, renters, busy professionals, and families across the Triangle.</span>
+        </div>
+        <div class="booking-highlight">
+          <strong>Right Service Match</strong>
+          <span>We can steer you toward one service or help coordinate multiple needs from the start.</span>
+        </div>
+        <div class="booking-highlight">
+          <strong>Fast Follow-Up</strong>
+          <span>Every inquiry lands in the database so nothing gets lost between clicks and callbacks.</span>
+        </div>
+        <div class="booking-highlight">
+          <strong>Triangle Coverage</strong>
+          <span>Raleigh, Durham, Chapel Hill, and surrounding areas we can confirm during follow-up.</span>
+        </div>
+      </div>
+    </div>
+    <div class="intake-card reveal reveal-delay-2">
+      <h3>Client Interest Form</h3>
+      <p>Share the basics and we will reach out within 24 hours.</p>
+      <form id="client-interest-form" novalidate>
+        <div class="hp-field" aria-hidden="true">
+          <label for="website">Website</label>
+          <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
+        <div class="intake-row">
+          <div class="intake-group">
+            <label for="fullName">Full Name</label>
+            <input id="fullName" name="fullName" type="text" placeholder="First Last" required maxlength="120" autocomplete="name">
+          </div>
+          <div class="intake-group">
+            <label for="email">Email Address</label>
+            <input id="email" name="email" type="email" placeholder="you@email.com" required maxlength="200" autocomplete="email">
+          </div>
+        </div>
+        <div class="intake-row">
+          <div class="intake-group">
+            <label for="phone">Phone Number</label>
+            <input id="phone" name="phone" type="tel" placeholder="Optional" maxlength="40" autocomplete="tel">
+          </div>
+          <div class="intake-group">
+            <label for="city">City / Area</label>
+            <input id="city" name="city" type="text" placeholder="Raleigh" required maxlength="120" autocomplete="address-level2">
+          </div>
+        </div>
+        <div class="intake-row">
+          <div class="intake-group">
+            <label for="serviceInterest">Service Interest</label>
+            <select id="serviceInterest" name="serviceInterest" required>
+              <option value="">Select one...</option>
+              <option value="House Cleaning">House Cleaning</option>
+              <option value="Laundry Service">Laundry Service</option>
+              <option value="Errand Service">Errand Service</option>
+              <option value="Concierge Management">Concierge Management</option>
+              <option value="Multiple Services">Multiple Services</option>
+              <option value="Not Sure Yet">Not Sure Yet</option>
+            </select>
+          </div>
+          <div class="intake-group">
+            <label for="timeline">When do you need help?</label>
+            <select id="timeline" name="timeline" required>
+              <option value="">Select one...</option>
+              <option value="As soon as possible">As soon as possible</option>
+              <option value="This week">This week</option>
+              <option value="Within 2 weeks">Within 2 weeks</option>
+              <option value="This month">This month</option>
+              <option value="Just exploring">Just exploring</option>
+            </select>
+          </div>
+        </div>
+        <div class="intake-group">
+          <label for="householdDetails">What should we know?</label>
+          <textarea id="householdDetails" name="householdDetails" placeholder="Tell us about your home, service priorities, schedule, or anything else that would help us follow up well." required maxlength="3000"></textarea>
+        </div>
+        <button class="intake-submit" id="client-form-submit" type="submit">Send Client Inquiry</button>
+        <p class="intake-status" id="client-form-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
   <div class="final-cta-inner">
     <div class="cta-label">Get Started Today</div>
     <h2>Your home deserves<br><em>better than this.</em></h2>
     <p>Stop putting it off. Book your first service in under 3 minutes. No account required. No calls. Just choose what you need and we handle everything else.</p>
     <div class="cta-btns">
-      <a href="#" class="btn-gold">Book a Service Now</a>
+      <a href="#book" class="btn-gold">Book a Service Now</a>
       <a href="partnerships.html" class="btn-outline">Partner With Us</a>
     </div>
   </div>
@@ -530,8 +646,8 @@ footer{background:var(--ink);border-top:1px solid rgba(201,168,76,0.07);padding:
         <p class="footer-tagline">Premium home services for busy professionals across Raleigh, Durham, and Chapel Hill.</p>
       </div>
       <div class="footer-col"><h4>Services</h4><ul><li>House Cleaning</li><li>Laundry Service</li><li>Errand Service</li><li>Concierge Management</li></ul></div>
-      <div class="footer-col"><h4>Company</h4><ul><li>How It Works</li><li>Pricing</li><li><a href="partnerships.html">Partnerships</a></li><li>FAQs</li></ul></div>
-      <div class="footer-col"><h4>Get Started</h4><ul><li>Book a Service</li><li><a href="partnerships.html">Partner With Us</a></li><li>Contact</li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="#services">How It Works</a></li><li><a href="#pricing">Pricing</a></li><li><a href="partnerships.html">Partnerships</a></li><li><a href="faq.html">FAQs</a></li></ul></div>
+      <div class="footer-col"><h4>Get Started</h4><ul><li><a href="#book">Book a Service</a></li><li><a href="partnerships.html">Partner With Us</a></li><li><a href="#book">Contact</a></li></ul></div>
     </div>
     <div class="footer-bottom">
       <div class="footer-copy">© 2026 The Triangle's Concierge. All rights reserved.</div>
@@ -558,6 +674,40 @@ const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
 },{threshold:0.08});
 reveals.forEach(el=>obs.observe(el));
+const clientForm=document.getElementById('client-interest-form');
+const clientSubmitButton=document.getElementById('client-form-submit');
+const clientStatus=document.getElementById('client-form-status');
+const clientDefaultLabel=clientSubmitButton.textContent;
+function setClientStatus(message,state){
+  clientStatus.textContent=message;
+  clientStatus.className='intake-status';
+  if(state){clientStatus.classList.add(`is-${state}`);}
+}
+clientForm.addEventListener('submit',async event=>{
+  event.preventDefault();
+  if(!clientForm.reportValidity()){return;}
+  const formData=new FormData(clientForm);
+  const payload=Object.fromEntries(formData.entries());
+  clientSubmitButton.disabled=true;
+  clientSubmitButton.textContent='Sending...';
+  setClientStatus('Saving your inquiry...',null);
+  try{
+    const response=await fetch('/api/client-interest',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(payload),
+    });
+    const result=await response.json().catch(()=>({}));
+    if(!response.ok){throw new Error(result.error||'Unable to send your inquiry right now.');}
+    clientForm.reset();
+    setClientStatus('Thanks. Your inquiry was received and saved. We will follow up within 24 hours.','success');
+  }catch(error){
+    setClientStatus(error.message||'Unable to send your inquiry right now.','error');
+  }finally{
+    clientSubmitButton.disabled=false;
+    clientSubmitButton.textContent=clientDefaultLabel;
+  }
+});
 </script>
 </body>
 </html>
