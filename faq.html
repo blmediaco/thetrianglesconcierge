@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — The Triangle's Concierge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--ink:#0D1810;--forest:#152218;--forest-mid:#1E3424;--sage:#5C7A60;--sage-light:#8FAF94;--gold:#C9A84C;--gold-light:#E2C97E;--cream:#F4F0E6;--muted:#7A7060;--F:'Playfair Display',Georgia,serif;--B:'Jost',sans-serif;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--B);background:var(--ink);color:var(--cream);font-size:16px;line-height:1.7;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 3.5rem;background:rgba(13,24,16,0.96);backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,168,76,0.1);}
+.nav-logo{font-family:var(--F);font-size:1rem;font-weight:400;letter-spacing:0.12em;color:var(--cream);text-decoration:none;text-transform:uppercase;}
+.nav-logo span{color:var(--gold);}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center;}
+.nav-links a{font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(244,240,230,0.5);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:var(--gold-light);}
+.nav-book{border:1px solid rgba(201,168,76,0.45)!important;color:var(--gold-light)!important;padding:0.5rem 1.3rem!important;border-radius:1px!important;}
+.hero{background:var(--forest);padding:9rem 3.5rem 5rem;position:relative;overflow:hidden;}
+.hero::after{content:'FAQ';position:absolute;right:-1rem;bottom:-2rem;font-family:var(--F);font-size:16rem;font-weight:700;font-style:italic;color:transparent;-webkit-text-stroke:1px rgba(201,168,76,0.04);pointer-events:none;line-height:1;}
+.hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+.eyebrow{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;}
+.eyebrow::before{content:'';width:2.5rem;height:1px;background:var(--gold);}
+.eyebrow span{font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);}
+.hero h1{font-family:var(--F);font-size:clamp(2.5rem,5vw,5rem);font-weight:400;color:var(--cream);line-height:1.05;margin-bottom:1rem;}
+.hero h1 em{font-style:italic;color:var(--gold-light);}
+.hero p{font-size:0.9rem;color:rgba(200,191,168,0.55);max-width:520px;font-weight:300;line-height:1.9;}
+.faq-main{padding:6rem 3.5rem;max-width:1200px;margin:0 auto;}
+.faq-layout{display:grid;grid-template-columns:220px 1fr;gap:5rem;align-items:start;}
+.faq-nav{position:sticky;top:6rem;}
+.faq-nav-label{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.25rem;}
+.faq-nav ul{list-style:none;display:flex;flex-direction:column;gap:0.1rem;}
+.faq-nav a{font-size:0.78rem;color:rgba(200,191,168,0.4);text-decoration:none;padding:0.4rem 0;display:block;transition:color 0.2s;border-left:1px solid rgba(255,255,255,0.05);padding-left:0.75rem;}
+.faq-nav a:hover{color:var(--gold-light);border-left-color:var(--gold);}
+.faq-sections{display:flex;flex-direction:column;gap:4rem;}
+.faq-section-title{font-family:var(--F);font-size:1.4rem;font-weight:400;color:var(--gold-light);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;}
+.faq-section-title::after{content:'';flex:1;height:1px;background:rgba(201,168,76,0.12);}
+.faq-item{border-top:1px solid rgba(255,255,255,0.05);overflow:hidden;}
+.faq-question{width:100%;background:none;border:none;color:var(--cream);font-family:var(--B);font-size:0.92rem;font-weight:400;text-align:left;padding:1.25rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;transition:color 0.2s;}
+.faq-question:hover{color:var(--gold-light);}
+.faq-icon{width:24px;height:24px;border:1px solid rgba(201,168,76,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem;color:var(--gold);flex-shrink:0;transition:transform 0.3s,background 0.3s;}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:rgba(201,168,76,0.1);}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height 0.4s ease;}
+.faq-item.open .faq-answer{max-height:400px;}
+.faq-answer-inner{font-size:0.85rem;color:rgba(200,191,168,0.6);line-height:1.9;font-weight:300;padding-bottom:1.5rem;}
+.faq-answer-inner strong{color:var(--cream);font-weight:400;}
+.faq-cta{background:var(--forest);margin:0 3.5rem 5rem;border-radius:2px;padding:3rem;display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap;border:1px solid rgba(201,168,76,0.1);}
+.faq-cta-text h2{font-family:var(--F);font-size:1.75rem;font-weight:400;color:var(--cream);margin-bottom:0.5rem;}
+.faq-cta-text h2 em{font-style:italic;color:var(--gold-light);}
+.faq-cta-text p{font-size:0.82rem;color:rgba(200,191,168,0.5);font-weight:300;}
+.btn-gold{background:var(--gold);color:var(--ink);padding:1rem 2.25rem;font-family:var(--B);font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;border-radius:1px;font-weight:500;transition:background 0.2s;display:inline-block;white-space:nowrap;}
+.btn-gold:hover{background:var(--gold-light);}
+.btn-outline{border:1px solid rgba(200,191,168,0.25);color:rgba(200,191,168,0.6);padding:1rem 2rem;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;border-radius:1px;transition:all 0.2s;display:inline-block;white-space:nowrap;}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold-light);}
+footer{background:var(--ink);border-top:1px solid rgba(201,168,76,0.07);padding:2.5rem 3.5rem;display:flex;justify-content:space-between;align-items:center;}
+.footer-logo{font-family:var(--F);font-size:0.9rem;color:var(--cream);text-transform:uppercase;letter-spacing:0.1em;}
+.footer-logo span{color:var(--gold);}
+.footer-copy{font-size:0.65rem;color:rgba(200,191,168,0.2);}
+@media(max-width:900px){nav{padding:1rem 1.5rem;}.hero{padding:7rem 1.5rem 4rem;}.faq-main{padding:4rem 1.5rem;}.faq-layout{grid-template-columns:1fr;gap:2rem;}.faq-nav{position:static;}.faq-cta{margin:0 1.5rem 3rem;flex-direction:column;}.footer{padding:2rem 1.5rem;flex-direction:column;gap:1rem;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">The Triangle's <span>Concierge</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#pricing">Pricing</a></li>
+    <li><a href="partnerships.html">Partnerships</a></li>
+    <li><a href="index.html#book" class="nav-book">Book Now</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow"><span>FAQ</span></div>
+    <h1>Questions, <em>answered.</em></h1>
+    <p>Everything you need to know about our services, our team, and how we work with residential communities across the Triangle.</p>
+  </div>
+</section>
+
+<div class="faq-main">
+  <div class="faq-layout">
+    <div class="faq-nav">
+      <div class="faq-nav-label">Jump to section</div>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#booking">Booking</a></li>
+        <li><a href="#cleaning">Cleaning</a></li>
+        <li><a href="#laundry">Laundry</a></li>
+        <li><a href="#team">Our Team</a></li>
+        <li><a href="#partnerships">Partnerships</a></li>
+      </ul>
+    </div>
+
+    <div class="faq-sections">
+
+      <div id="services">
+        <div class="faq-section-title">Services</div>
+        <div class="faq-item">
+          <button class="faq-question">What services does Triangle's Concierge offer?<div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">We offer four core services: <strong>Professional House Cleaning</strong>, <strong>Luxury Pickup and Delivery Laundry</strong>, <strong>Errand Service</strong> (grocery runs, returns, pickups, drop-offs), and <strong>Concierge Home Management</strong> for clients who want comprehensive, ongoing home operations support. All services are bookable through our digital platform.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">What areas do you serve?<div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">We currently serve <strong>Raleigh, Durham, and Chapel Hill</strong> — the full Triangle area. If you're unsure whether we serve your specific location, reach out and we'll confirm.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Can I combine services in one booking?<div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">Yes. You can add a laundry service on top of a cleaning appointment during your booking flow. Our concierge management tier is designed for clients who want multiple services coordinated on an ongoing basis through a single point of contact.</div></div>
+        </div>
+      </div>
+
+      <div id="booking">
+        <div class="faq-section-title">Booking</div>
+        <div class="faq-item">
+          <button class="faq-question">How do I book a service?<div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">Book directly through our online platform — no phone calls required. Each service has its own guided booking flow that captures everything we need before we arrive. Cleaning takes about 3 minutes to book. Laundry is similarly quick. You'll receive a confirmation once your booking is placed.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">How far in advance do I need to book?<div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">We recommend booking at least <strong>24–48 hours in advance</strong> for cleaning services. Laundry standard delivery requires same-day scheduling for next-day return. Express overnight laundry is available for same-day pickup when capacity allows.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">What payment methods do you accept?<div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">We accept all major credit and debit cards through our secure payment processor. Payment is collected at the time of booking. For laundry, the estimated charge is collected upfront and adjusted after your items are weighed — you'll never be surprised.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Can I cancel or reschedule?<div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">Yes. Cancellations and reschedules must be made at least <strong>24 hours before your scheduled service</strong> to avoid a cancellation fee. Contact us at the email in your confirmation to make changes.</div></div>
+        </div>
+      </div>
+
+      <div id="cleaning">
+        <div class="faq-section-title">House Cleaning</div>
+        <div class="faq-item">
+          <button class="faq-question">What does a standard cleaning include?<div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">Our standard cleaning covers all rooms, kitchen surfaces and appliance exteriors, all bathrooms, floors (swept, mopped, or vacuumed by floor type), and general tidying. Add-ons like deep cleaning, inside oven, inside fridge, pet hair removal, and move-in/move-out service are available during booking.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Do I need to be home during the cleaning?<div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">No. During booking you'll choose your preferred access method — door code, lockbox, concierge desk, meet-at-door, garage entry, or other. If you select that you won't be home, you'll be asked where our team should leave the key when finished.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">What cleaning products do you use?<div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">We use <strong>professional-grade standard cleaning products</strong> by default. During booking you can upgrade to <strong>hypoallergenic, fragrance-free products</strong> for an additional $10 — ideal for sensitive households. We do not currently bring products provided by clients.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Do you have a pet policy?<div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">Yes. All clients with pets are required to complete a <strong>pet safety agreement</strong> during booking. All pets must be secured for the entire duration of service. Our team does not interact with animals at any time. Failure to secure pets may result in cancellation and a full service charge.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">How is cleaning priced?<div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">Cleaning is priced by home size: <strong>$199</strong> (1BR/1BA), <strong>$299</strong> (2BR/2BA), <strong>$389</strong> (3BR/2.5BA), <strong>$479</strong> (4BR/3BA+). Add-ons are priced individually and shown clearly during booking. You see the full total before you confirm.</div></div>
+        </div>
+      </div>
+
+      <div id="laundry">
+        <div class="faq-section-title">Laundry Service</div>
+        <div class="faq-item">
+          <button class="faq-question">How does laundry pickup and delivery work?<div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">You schedule a pickup through our booking flow, select your bag count and sizes, choose your detergent preference and care options, then select your delivery speed. We pick up your laundry, wash, fold, and return it — washed exactly how you specified.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">What are the delivery speed options?<div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner"><strong>Standard delivery</strong> is $2.50/lb with a $50 minimum — pickup by 8pm, delivered the following day by 8pm. <strong>Express overnight</strong> is $5.00/lb with a $70 minimum — same-day pickup, delivered by 10am the next morning. Express has a 60lb weight limit and hang dry is unavailable.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Can you handle comforters, duvets, and oversized items?<div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">Yes. Comforters, duvets, and pillows are priced at <strong>$20 each</strong> with no per-pound counting. Select the quantity during your booking and we handle the rest.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">What is the laundry safety certification?<div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">Before confirming your laundry order, you certify that your items contain no bugs, mold, or hazardous materials, no biological waste beyond normal household traces, and no severe pet matting. Violations incur a $20 sanitation fee and items may be returned unwashed. This protects both you and our team.</div></div>
+        </div>
+      </div>
+
+      <div id="team">
+        <div class="faq-section-title">Our Team</div>
+        <div class="faq-item">
+          <button class="faq-question">Who performs the services?<div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">Our services are performed by vetted local professionals in the Raleigh, Durham, and Chapel Hill area. Every service provider is screened before working with Triangle's Concierge clients. We maintain consistent quality standards across all services.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Are your service providers insured?<div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">Yes. All service providers operating under Triangle's Concierge carry appropriate liability coverage. If you have a concern about a service, contact us immediately at our partnerships or client contact email and we will address it directly.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">What if something goes wrong during a service?<div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">Contact us within 24 hours of your completed service. We take quality seriously and will work to make it right — whether that means a re-service, a credit, or another resolution. We don't leave issues unresolved.</div></div>
+        </div>
+      </div>
+
+      <div id="partnerships">
+        <div class="faq-section-title">Partnerships</div>
+        <div class="faq-item">
+          <button class="faq-question">What does a partnership with Triangle's Concierge cost my property?<div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner"><strong>Nothing for the Directory Listing and Resident Perks tiers.</strong> Your residents book and pay us directly. Your property gets the benefit of offering a premium amenity at zero cost. The Branded Concierge (white-label) program has custom pricing based on scope — contact us for details.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">How long does setup take?<div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">For a Directory Listing or Resident Perks program, setup takes less than one week from the time you confirm. We handle all materials, custom codes, and onboarding. You just give us the green light.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Is there a contract or long-term commitment?<div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">No long-term commitment is required for Directory Listing or Resident Perks partnerships. The Branded Concierge program involves an annual partnership agreement with flexible terms. We believe in making it easy to say yes — and even easier to stay.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">How do I get started as a partner?<div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">Visit our <a href="partnerships.html" style="color:var(--gold-light);">partnerships page</a>, fill out the interest form, and our Partnerships Director our team will follow up within 24 hours. Or email us directly at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ee9e8f9c9a808b9c9d86879e9dae9a9c878f8089828b9d8d81808d878b9c898bc08d8183">[email&#160;protected]</a>.</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="faq-cta">
+  <div class="faq-cta-text">
+    <h2>Still have questions? <em>Let's talk.</em></h2>
+    <p>Reach out directly and We will get back to you within 24 hours.</p>
+  </div>
+  <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+    <a href="partnerships.html" class="btn-gold">Partner With Us</a>
+    <a href="index.html#book" class="btn-outline">Book a Service</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">The Triangle's <span>Concierge</span></div>
+  <div class="footer-copy">© 2026 The Triangle's Concierge · Raleigh · Durham · Chapel Hill, NC</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item 

@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Triangle's Concierge — Premium Home Services, Raleigh NC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --ink:#0D1810;--forest:#152218;--forest-mid:#1E3424;--forest-light:#2A4A32;
+  --sage:#5C7A60;--sage-light:#8FAF94;--gold:#C9A84C;--gold-light:#E2C97E;
+  --gold-pale:#F5EDCC;--cream:#F4F0E6;--cream-warm:#EDE7D5;
+  --stone:#C8BFA8;--muted:#7A7060;--white:#FDFAF3;
+  --F:'Playfair Display',Georgia,serif;--B:'Jost',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--B);background:var(--ink);color:var(--cream);font-size:16px;line-height:1.7;overflow-x:hidden;cursor:none;}
+.cursor{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width 0.3s,height 0.3s;}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(201,168,76,0.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left 0.06s,top 0.06s,width 0.3s,height 0.3s;}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.5rem 3.5rem;transition:background 0.4s,padding 0.4s;}
+nav.scrolled{background:rgba(13,24,16,0.96);backdrop-filter:blur(16px);padding:1rem 3.5rem;border-bottom:1px solid rgba(201,168,76,0.1);}
+.nav-logo{font-family:var(--F);font-size:1rem;font-weight:400;letter-spacing:0.12em;color:var(--cream);text-decoration:none;text-transform:uppercase;}
+.nav-logo span{color:var(--gold);}
+.nav-links{display:flex;gap:2.5rem;list-style:none;align-items:center;}
+.nav-links a{font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(244,240,230,0.55);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:var(--gold-light);}
+.nav-book{border:1px solid rgba(201,168,76,0.45)!important;color:var(--gold-light)!important;padding:0.5rem 1.3rem!important;border-radius:1px!important;}
+.nav-book:hover{background:rgba(201,168,76,0.1)!important;}
+.hero{min-height:100vh;position:relative;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;padding:0 3.5rem 5rem;}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.04) 1px,transparent 1px);background-size:80px 80px;animation:grid-drift 20s linear infinite;}
+@keyframes grid-drift{0%{transform:translateY(0);}100%{transform:translateY(80px);}}
+.hero-bg-word{position:absolute;bottom:-4rem;right:-2rem;font-family:var(--F);font-size:clamp(14rem,22vw,28rem);font-weight:700;font-style:italic;color:transparent;-webkit-text-stroke:1px rgba(201,168,76,0.06);line-height:1;pointer-events:none;user-select:none;white-space:nowrap;}
+.hero-vertical{position:absolute;right:3.5rem;top:50%;transform:translateY(-50%) rotate(90deg);font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(201,168,76,0.4);white-space:nowrap;}
+.scroll-line{position:absolute;left:3.5rem;bottom:3rem;display:flex;flex-direction:column;align-items:center;gap:0.5rem;}
+.scroll-line span{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(201,168,76,0.4);writing-mode:vertical-lr;}
+.scroll-line::after{content:'';width:1px;height:60px;background:linear-gradient(to bottom,rgba(201,168,76,0.4),transparent);animation:scroll-pulse 2s ease infinite;}
+@keyframes scroll-pulse{0%,100%{opacity:0.4;}50%{opacity:1;}}
+.hero-content{position:relative;z-index:2;max-width:900px;}
+.hero-kicker{display:flex;align-items:center;gap:1rem;margin-bottom:2rem;opacity:0;animation:fade-up 0.8s 0.2s forwards;}
+.hero-kicker-line{width:3rem;height:1px;background:var(--gold);}
+.hero-kicker span{font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);}
+.hero h1{font-family:var(--F);font-size:clamp(3.5rem,7vw,8rem);font-weight:400;line-height:0.95;color:var(--cream);letter-spacing:-0.01em;margin-bottom:2.5rem;opacity:0;animation:fade-up 0.8s 0.4s forwards;}
+.hero h1 em{font-style:italic;color:var(--gold-light);display:block;}
+.hero h1 .outline{-webkit-text-stroke:1px rgba(244,240,230,0.25);color:transparent;}
+.hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;opacity:0;animation:fade-up 0.8s 0.7s forwards;}
+.hero-desc{max-width:400px;font-size:0.9rem;color:rgba(200,191,168,0.7);line-height:1.9;font-weight:300;margin-right:3rem;}
+.hero-actions{display:flex;gap:1.25rem;align-items:center;flex-shrink:0;}
+.btn-gold{background:var(--gold);color:var(--ink);padding:1.1rem 2.5rem;font-family:var(--B);font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;border-radius:1px;font-weight:500;transition:background 0.2s,transform 0.15s;display:inline-block;}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px);}
+.btn-outline{border:1px solid rgba(200,191,168,0.3);color:rgba(200,191,168,0.7);padding:1.1rem 2rem;font-family:var(--B);font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;border-radius:1px;transition:border-color 0.2s,color 0.2s;display:inline-block;}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold-light);}
+@keyframes fade-up{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+.marquee-strip{background:var(--gold);padding:0.75rem 0;overflow:hidden;white-space:nowrap;}
+.marquee-inner{display:inline-flex;animation:marquee 28s linear infinite;}
+.marquee-inner span{font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink);font-weight:500;padding:0 2.5rem;}
+.marquee-inner span::after{content:'◆';margin-left:2.5rem;opacity:0.35;}
+@keyframes marquee{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.section-eyebrow{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;}
+.section-eyebrow::before{content:'';width:2.5rem;height:1px;background:var(--gold);}
+.section-eyebrow span{font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);}
+.section-title{font-family:var(--F);font-size:clamp(2.5rem,4vw,5rem);font-weight:400;line-height:1.05;color:var(--cream);margin-bottom:4rem;}
+.section-title em{font-style:italic;color:var(--gold-light);}
+.section-title .dim{color:rgba(244,240,230,0.25);}
+.services{background:var(--forest);padding:8rem 3.5rem;position:relative;overflow:hidden;}
+.services::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0.3;}
+.services-inner{max-width:1400px;margin:0 auto;}
+.services-list{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+.service-item{background:rgba(255,255,255,0.02);border:1px solid rgba(201,168,76,0.1);border-radius:2px;padding:3rem;position:relative;overflow:hidden;transition:border-color 0.35s,background 0.35s;}
+.service-item::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(201,168,76,0.05),transparent 60%);opacity:0;transition:opacity 0.35s;}
+.service-item:hover{border-color:rgba(201,168,76,0.4);background:rgba(255,255,255,0.035);}
+.service-item:hover::before{opacity:1;}
+.service-num{font-family:var(--F);font-size:4rem;font-weight:700;color:rgba(201,168,76,0.07);position:absolute;top:1.5rem;right:2rem;line-height:1;transition:color 0.35s;}
+.service-item:hover .service-num{color:rgba(201,168,76,0.14);}
+.service-tag{display:inline-block;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,0.25);padding:0.3rem 0.75rem;border-radius:1px;margin-bottom:1.75rem;}
+.service-name{font-family:var(--F);font-size:2rem;font-weight:400;color:var(--cream);margin-bottom:1rem;line-height:1.15;}
+.service-name em{font-style:italic;color:var(--gold-light);}
+.service-desc{font-size:0.83rem;color:rgba(200,191,168,0.6);line-height:1.9;font-weight:300;margin-bottom:2rem;max-width:380px;}
+.service-details{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2rem;}
+.service-pill{font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(200,191,168,0.45);background:rgba(255,255,255,0.03);padding:0.3rem 0.75rem;border-radius:40px;border:1px solid rgba(255,255,255,0.05);}
+.service-price{font-family:var(--F);font-size:1.5rem;font-weight:400;color:var(--gold-light);}
+.service-price sub{font-family:var(--B);font-size:0.7rem;letter-spacing:0.1em;color:rgba(200,191,168,0.35);vertical-align:middle;margin-left:0.3rem;}
+.service-arrow{position:absolute;bottom:2.5rem;right:2.5rem;width:40px;height:40px;border:1px solid rgba(201,168,76,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(201,168,76,0.4);font-size:1rem;transition:all 0.3s;}
+.service-item:hover .service-arrow{background:var(--gold);border-color:var(--gold);color:var(--ink);transform:rotate(45deg);}
+.process{background:var(--ink);padding:9rem 3.5rem;}
+.process-inner{max-width:1400px;margin:0 auto;}
+.process-header{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-bottom:6rem;align-items:end;}
+.process-header-right{font-size:0.88rem;color:rgba(200,191,168,0.5);line-height:1.9;font-weight:300;}
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);position:relative;}
+.steps-grid::before{content:'';position:absolute;top:2.25rem;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.2) 20%,rgba(201,168,76,0.2) 80%,transparent);}
+.step{padding:0 2rem 0 0;}
+.step-num{width:4.5rem;height:4.5rem;border:1px solid rgba(201,168,76,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--F);font-size:1.1rem;color:var(--gold);margin-bottom:2.5rem;background:var(--ink);position:relative;z-index:1;transition:background 0.3s,border-color 0.3s;}
+.step:hover .step-num{background:rgba(201,168,76,0.08);border-color:var(--gold);}
+.step-title{font-family:var(--F);font-size:1.3rem;font-weight:400;color:var(--cream);margin-bottom:0.75rem;}
+.step-desc{font-size:0.8rem;color:rgba(200,191,168,0.45);line-height:1.85;font-weight:300;}
+.pricing{background:var(--forest);padding:9rem 3.5rem;position:relative;overflow:hidden;}
+.pricing::after{content:'Price';position:absolute;right:-1rem;bottom:-3rem;font-family:var(--F);font-size:16rem;font-weight:700;font-style:italic;color:transparent;-webkit-text-stroke:1px rgba(201,168,76,0.04);pointer-events:none;line-height:1;white-space:nowrap;}
+.pricing-inner{max-width:1400px;margin:0 auto;}
+.pricing-header{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-bottom:5rem;align-items:end;}
+.pricing-note{font-size:0.85rem;color:rgba(200,191,168,0.5);line-height:1.9;font-weight:300;}
+.pricing-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.06);border-radius:2px;overflow:hidden;}
+.price-tile{background:var(--forest);padding:2.5rem 2rem;position:relative;transition:background 0.3s;}
+.price-tile:hover{background:var(--forest-mid);}
+.price-tile.featured{background:var(--forest-mid);}
+.price-tile.featured::before{content:'Most Booked';position:absolute;top:0;left:0;right:0;background:var(--gold);color:var(--ink);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;text-align:center;padding:0.35rem;font-weight:500;}
+.price-tile.featured{padding-top:3.5rem;}
+.price-bed{font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(200,191,168,0.4);margin-bottom:1rem;}
+.price-amt{font-family:var(--F);font-size:3.5rem;font-weight:400;color:var(--cream);line-height:1;margin-bottom:0.25rem;}
+.price-tile.featured .price-amt{color:var(--gold-light);}
+.price-per{font-size:0.7rem;color:rgba(200,191,168,0.3);letter-spacing:0.05em;margin-bottom:2rem;}
+.price-sqft{font-size:0.72rem;color:var(--sage-light);border-top:1px solid rgba(255,255,255,0.05);padding-top:1rem;margin-bottom:0.5rem;}
+.price-incl{font-size:0.72rem;color:rgba(200,191,168,0.35);font-weight:300;}
+.addons-strip{margin-top:2rem;display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;}
+.addon-card{background:rgba(255,255,255,0.02);border:1px solid rgba(201,168,76,0.07);border-radius:1px;padding:1.25rem 1rem;text-align:center;transition:border-color 0.25s,background 0.25s;}
+.addon-card:hover{border-color:rgba(201,168,76,0.3);background:rgba(201,168,76,0.04);}
+.addon-price{font-family:var(--F);font-size:1.25rem;font-weight:400;color:var(--gold-light);margin-bottom:0.3rem;}
+.addon-name{font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(200,191,168,0.4);}
+.laundry{background:var(--ink);padding:9rem 3.5rem;}
+.laundry-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;}
+.laundry-title{font-family:var(--F);font-size:clamp(2.2rem,3.5vw,4rem);font-weight:400;line-height:1.1;color:var(--cream);margin-bottom:1.5rem;}
+.laundry-title em{font-style:italic;color:var(--gold-light);}
+.laundry-desc{font-size:0.88rem;color:rgba(200,191,168,0.55);line-height:1.9;font-weight:300;margin-bottom:3rem;}
+.laundry-specs{display:flex;flex-direction:column;}
+.spec-row{display:flex;align-items:flex-start;justify-content:space-between;padding:1rem 0;border-top:1px solid rgba(255,255,255,0.04);}
+.spec-label{font-size:0.72rem;color:rgba(200,191,168,0.35);letter-spacing:0.06em;}
+.spec-val{font-size:0.8rem;color:var(--cream);text-align:right;max-width:220px;font-weight:300;}
+.spec-val strong{color:var(--gold-light);font-weight:400;}
+.laundry-visual{background:var(--forest);border:1px solid rgba(201,168,76,0.1);border-radius:2px;padding:3rem;position:relative;overflow:hidden;}
+.laundry-visual::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 30%,rgba(201,168,76,0.05),transparent 60%);}
+.lv-header{font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:2.5rem;display:flex;align-items:center;gap:0.75rem;}
+.lv-header::before{content:'';width:1.5rem;height:1px;background:var(--gold);}
+.delivery-options{display:flex;flex-direction:column;gap:1rem;margin-bottom:1.5rem;}
+.delivery-opt{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.05);border-radius:1px;padding:1.25rem 1.5rem;display:flex;justify-content:space-between;align-items:flex-start;transition:border-color 0.2s;}
+.delivery-opt.selected{border-color:rgba(201,168,76,0.4);background:rgba(201,168,76,0.04);}
+.do-name{font-size:0.82rem;color:var(--cream);margin-bottom:0.25rem;}
+.do-detail{font-size:0.7rem;color:rgba(200,191,168,0.38);font-weight:300;}
+.do-price{font-family:var(--F);font-size:1.1rem;color:var(--gold-light);flex-shrink:0;margin-left:1rem;}
+.detergent-row{background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.04);padding:0.85rem 1.5rem;border-radius:1px;font-size:0.72rem;color:rgba(200,191,168,0.4);display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;}
+.detergent-row span{color:rgba(200,191,168,0.65);}
+.proof{background:var(--forest-light);padding:7rem 3.5rem;}
+.proof-inner{max-width:1400px;margin:0 auto;}
+.proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:4rem;}
+.proof-card{background:rgba(13,24,16,0.5);border:1px solid rgba(201,168,76,0.08);padding:2.5rem;border-radius:1px;position:relative;transition:border-color 0.3s;}
+.proof-card:hover{border-color:rgba(201,168,76,0.25);}
+.proof-card::before{content:'\201C';font-family:var(--F);font-size:6rem;font-style:italic;color:rgba(201,168,76,0.07);position:absolute;top:-1rem;left:1.5rem;line-height:1;}
+.proof-stars{display:flex;gap:0.25rem;margin-bottom:1.5rem;}
+.proof-stars span{color:var(--gold);font-size:0.7rem;}
+.proof-text{font-family:var(--F);font-size:1rem;font-style:italic;color:rgba(244,240,230,0.7);line-height:1.75;margin-bottom:1.75rem;}
+.proof-name{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(200,191,168,0.35);}
+.proof-location{font-size:0.68rem;color:rgba(201,168,76,0.45);margin-top:0.2rem;}
+.why{background:var(--ink);padding:9rem 3.5rem;}
+.why-inner{max-width:1400px;margin:0 auto;}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:4rem;}
+.why-card{background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.05);padding:2.5rem;border-radius:1px;transition:border-color 0.3s;}
+.why-card:hover{border-color:rgba(201,168,76,0.2);}
+.why-card.tall{grid-row:span 2;}
+.why-icon{width:44px;height:44px;border:1px solid rgba(201,168,76,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;margin-bottom:1.75rem;color:var(--gold);}
+.why-title{font-family:var(--F);font-size:1.4rem;font-weight:400;color:var(--cream);margin-bottom:0.75rem;}
+.why-desc{font-size:0.82rem;color:rgba(200,191,168,0.45);line-height:1.9;font-weight:300;}
+.why-stat{margin-top:2rem;font-family:var(--F);font-size:3rem;font-weight:400;color:var(--gold-light);line-height:1;}
+.why-stat-label{font-size:0.65rem;letter-spacing:0.12em;color:rgba(200,191,168,0.3);text-transform:uppercase;margin-top:0.35rem;}
+.final-cta{background:var(--forest);padding:10rem 3.5rem;text-align:center;position:relative;overflow:hidden;}
+.final-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(201,168,76,0.06),transparent 50%),radial-gradient(ellipse at 80% 50%,rgba(201,168,76,0.04),transparent 50%);}
+.final-cta-inner{position:relative;z-index:1;max-width:700px;margin:0 auto;}
+.cta-label{font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;display:flex;align-items:center;justify-content:center;gap:1rem;}
+.cta-label::before,.cta-label::after{content:'';flex:0 0 2.5rem;height:1px;background:var(--gold);opacity:0.4;}
+.final-cta h2{font-family:var(--F);font-size:clamp(2.5rem,5vw,5.5rem);font-weight:400;color:var(--cream);line-height:1.05;margin-bottom:1.5rem;}
+.final-cta h2 em{font-style:italic;color:var(--gold-light);}
+.final-cta p{font-size:0.9rem;color:rgba(200,191,168,0.48);line-height:1.9;font-weight:300;margin-bottom:3rem;}
+.cta-btns{display:flex;gap:1rem;justify-content:center;align-items:center;}
+footer{background:var(--ink);border-top:1px solid rgba(201,168,76,0.07);padding:4rem 3.5rem 2.5rem;}
+.footer-inner{max-width:1400px;margin:0 auto;}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,0.04);}
+.footer-brand-name{font-family:var(--F);font-size:1.05rem;letter-spacing:0.1em;color:var(--cream);text-transform:uppercase;margin-bottom:1rem;}
+.footer-brand-name span{color:var(--gold);}
+.footer-tagline{font-size:0.75rem;color:rgba(200,191,168,0.3);line-height:1.75;font-weight:300;max-width:240px;}
+.footer-col h4{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;}
+.footer-col ul{list-style:none;}
+.footer-col li,.footer-col a{font-size:0.75rem;color:rgba(200,191,168,0.3);font-weight:300;text-decoration:none;padding:0.3rem 0;display:block;transition:color 0.2s;cursor:pointer;}
+.footer-col li:hover,.footer-col a:hover{color:var(--cream);}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;}
+.footer-copy{font-size:0.65rem;color:rgba(200,191,168,0.18);}
+.footer-loc{font-size:0.65rem;color:rgba(200,191,168,0.18);}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.8s ease,transform 0.8s ease;}
+.reveal.visible{opacity:1;transform:none;}
+.reveal-delay-1{transition-delay:0.1s;}
+.reveal-delay-2{transition-delay:0.2s;}
+.reveal-delay-3{transition-delay:0.3s;}
+@media(max-width:1024px){
+  nav{padding:1.25rem 2rem;}
+  .hero{padding:0 2rem 4rem;}
+  .services,.process,.pricing,.laundry,.proof,.why,.final-cta{padding:5rem 2rem;}
+  footer{padding:3rem 2rem 2rem;}
+  .services-list{grid-template-columns:1fr;}
+  .steps-grid{grid-template-columns:1fr 1fr;gap:2.5rem;}
+  .steps-grid::before{display:none;}
+  .pricing-row{grid-template-columns:1fr 1fr;}
+  .pricing-header,.process-header{grid-template-columns:1fr;}
+  .addons-strip{grid-template-columns:repeat(3,1fr);}
+  .laundry-inner{grid-template-columns:1fr;gap:3rem;}
+  .proof-grid{grid-template-columns:1fr;}
+  .why-grid{grid-template-columns:1fr;}
+  .why-card.tall{grid-row:auto;}
+  .footer-top{grid-template-columns:1fr 1fr;gap:2rem;}
+  .hero-bottom{flex-direction:column;align-items:flex-start;gap:2rem;}
+  .hero-vertical,.scroll-line{display:none;}
+}
+@media(max-width:600px){
+  nav ul{display:none;}
+  .pricing-row{grid-template-columns:1fr 1fr;}
+  .addons-strip{grid-template-columns:1fr 1fr;}
+  .cta-btns{flex-direction:column;}
+  .footer-top{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="ring"></div>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">The Triangle's <span>Concierge</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#laundry">Laundry</a></li>
+    <li><a href="partnerships.html">Partnerships</a></li>
+    <li><a href="#book" class="nav-book">Book Now</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-grid"></div>
+  <div class="hero-bg-word">Premier</div>
+  <div class="hero-vertical">Raleigh · Durham · Chapel Hill · NC</div>
+  <div class="scroll-line"><span>Scroll</span></div>
+  <div class="hero-content">
+    <div class="hero-kicker">
+      <div class="hero-kicker-line"></div>
+      <span>The Triangle's Premier Home Concierge</span>
+    </div>
+    <h1>Your home.<br><em>Handled.</em><span class="outline">Completely.</span></h1>
+    <div class="hero-bottom">
+      <p class="hero-desc">We don't just clean houses. We manage the parts of home life that steal your time, drain your energy, and never seem to get done. One team. Four elite services. Zero juggling.</p>
+      <div class="hero-actions">
+        <a href="#services" class="btn-gold">Explore Services</a>
+        <a href="#pricing" class="btn-outline">See Pricing</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span>House Cleaning</span><span>Luxury Laundry</span><span>Errand Service</span><span>Concierge Management</span><span>Raleigh · Durham · Chapel Hill</span><span>Serving Busy Professionals</span><span>House Cleaning</span><span>Luxury Laundry</span><span>Errand Service</span><span>Concierge Management</span><span>Raleigh · Durham · Chapel Hill</span><span>Serving Busy Professionals</span>
+  </div>
+</div>
+
+<section class="services" id="services">
+  <div class="services-inner">
+    <div class="reveal">
+      <div class="section-eyebrow"><span>What We Do</span></div>
+      <h2 class="section-title">Four services. <em>One team.</em><br><span class="dim">Everything handled.</span></h2>
+    </div>
+    <div class="services-list">
+      <div class="service-item reveal reveal-delay-1">
+        <div class="service-num">01</div>
+        <div class="service-tag">Most Requested</div>
+        <div class="service-name">Premium House <em>Cleaning</em></div>
+        <p class="service-desc">An 11-step intake process ensures we know your home before we ever step inside. Cleaning products, access instructions, pets, special areas — all captured. We show up prepared and deliver every time.</p>
+        <div class="service-details">
+          <span class="service-pill">11-step booking</span>
+          <span class="service-pill">Deep cleaning upgrades</span>
+          <span class="service-pill">Pet safety protocol</span>
+          <span class="service-pill">Hypoallergenic products</span>
+          <span class="service-pill">Inside oven + fridge</span>
+          <span class="service-pill">Move-in/move-out</span>
+        </div>
+        <div class="service-price">$199 <sub>starting price</sub></div>
+        <div class="service-arrow">↗</div>
+      </div>
+      <div class="service-item reveal reveal-delay-2">
+        <div class="service-num">02</div>
+        <div class="service-tag">Luxury Laundry</div>
+        <div class="service-name">Pickup, Wash, <em>Deliver.</em></div>
+        <p class="service-desc">Your laundry done exactly how you like it. Choose your detergent, care options, and delivery speed. We handle bags, bags of bags, and the big oversized stuff too — comforters, duvets, pillows.</p>
+        <div class="service-details">
+          <span class="service-pill">Standard & express overnight</span>
+          <span class="service-pill">Detergent preference</span>
+          <span class="service-pill">Delicate + hang dry</span>
+          <span class="service-pill">Comforters & oversized</span>
+          <span class="service-pill">Safety certification</span>
+        </div>
+        <div class="service-price">$2.50<sub>/lb · $50 minimum</sub></div>
+        <div class="service-arrow">↗</div>
+      </div>
+      <div class="service-item reveal reveal-delay-1">
+        <div class="service-num">03</div>
+        <div class="service-tag">Errands Done</div>
+        <div class="service-name">Personal <em>Errand</em> Service</div>
+        <p class="service-desc">Groceries. Returns. Pickups. Drop-offs. The to-do list that never gets shorter — until now. Tell us what needs to happen and we handle it while you stay focused on what actually matters.</p>
+        <div class="service-details">
+          <span class="service-pill">Grocery shopping</span>
+          <span class="service-pill">Returns & exchanges</span>
+          <span class="service-pill">Pickups & drop-offs</span>
+          <span class="service-pill">Custom requests</span>
+        </div>
+        <div class="service-price">Custom <sub>pricing per request</sub></div>
+        <div class="service-arrow">↗</div>
+      </div>
+      <div class="service-item reveal reveal-delay-2">
+        <div class="service-num">04</div>
+        <div class="service-tag">Full Home Ops</div>
+        <div class="service-name">Concierge <em>Management</em></div>
+        <p class="service-desc">For clients who want complete peace of mind. We coordinate services, manage scheduling, and handle every detail so your home runs like it runs itself. This is home management elevated.</p>
+        <div class="service-details">
+          <span class="service-pill">Multi-service coordination</span>
+          <span class="service-pill">Recurring scheduling</span>
+          <span class="service-pill">One point of contact</span>
+          <span class="service-pill">Priority availability</span>
+        </div>
+        <div class="service-price">Custom <sub>package pricing</sub></div>
+        <div class="service-arrow">↗</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="process-inner">
+    <div class="process-header reveal">
+      <div>
+        <div class="section-eyebrow"><span>How It Works</span></div>
+        <h2 class="section-title">Built to be <em>effortless.</em></h2>
+      </div>
+      <p class="process-header-right">We built our booking flow so getting premium home service requires nothing from you but a few minutes and a few clicks. No calls. No follow-up. No chasing anyone down. Everything captured upfront so we deliver right the first time.</p>
+    </div>
+    <div class="steps-grid reveal">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title">Choose your service</div>
+        <p class="step-desc">Select from cleaning, laundry, errands, or concierge management. Each has its own guided booking flow built specifically for that service.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title">Walk through your intake</div>
+        <p class="step-desc">Home size, access method, product preferences, special instructions, add-ons, pet agreements — we capture everything before we arrive.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title">Pick your date and time</div>
+        <p class="step-desc">Choose from available windows. Standard or express delivery for laundry. Flexible scheduling for cleaning. You stay in control.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-title">We deliver. You relax.</div>
+        <p class="step-desc">Confirm and pay securely. Our team handles everything from there. You get updates. We get it done. That simple.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="pricing-inner">
+    <div class="pricing-header reveal">
+      <div>
+        <div class="section-eyebrow"><span>Transparent Pricing</span></div>
+        <h2 class="section-title">No surprises.<br><em>Ever.</em></h2>
+      </div>
+      <p class="pricing-note">Cleaning is priced by home size. You see the full cost before you confirm — base price, add-ons, everything itemized. Laundry runs $2.50/lb standard or $5.00/lb express overnight. Add-ons are listed individually during booking with no hidden fees.</p>
+    </div>
+    <div class="pricing-row reveal">
+      <div class="price-tile">
+        <div class="price-bed">1 Bed · 1 Bath</div>
+        <div class="price-amt">$199</div>
+        <div class="price-per">starting · up to 800 sq ft</div>
+        <div class="price-sqft">Standard clean</div>
+        <div class="price-incl">Kitchen, bathrooms, floors & surfaces</div>
+      </div>
+      <div class="price-tile featured">
+        <div class="price-bed">2 Bed · 2 Bath</div>
+        <div class="price-amt">$299</div>
+        <div class="price-per">starting · 800–1200 sq ft</div>
+        <div class="price-sqft">Standard clean</div>
+        <div class="price-incl">All rooms, bathrooms, floors & surfaces</div>
+      </div>
+      <div class="price-tile">
+        <div class="price-bed">3 Bed · 2.5 Bath</div>
+        <div class="price-amt">$389</div>
+        <div class="price-per">starting · 1200–2000 sq ft</div>
+        <div class="price-sqft">Priority scheduling</div>
+        <div class="price-incl">All rooms, bathrooms, detail-focused</div>
+      </div>
+      <div class="price-tile">
+        <div class="price-bed">4+ Bed · 3+ Bath</div>
+        <div class="price-amt">$479</div>
+        <div class="price-per">starting · 2000+ sq ft</div>
+        <div class="price-sqft">Dedicated team</div>
+        <div class="price-incl">White-glove full-home standard</div>
+      </div>
+    </div>
+    <div class="addons-strip reveal">
+      <div class="addon-card"><div class="addon-price">+$175</div><div class="addon-name">Deep Clean</div></div>
+      <div class="addon-card"><div class="addon-price">+$65</div><div class="addon-name">Inside Oven</div></div>
+      <div class="addon-card"><div class="addon-price">+$65</div><div class="addon-name">Inside Fridge</div></div>
+      <div class="addon-card"><div class="addon-price">+$85</div><div class="addon-name">Pet Hair Removal</div></div>
+      <div class="addon-card"><div class="addon-price">+$250</div><div class="addon-name">Move In / Out</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="laundry" id="laundry">
+  <div class="laundry-inner">
+    <div class="laundry-visual reveal">
+      <div class="lv-header">Luxury Laundry Service</div>
+      <div class="delivery-options">
+        <div class="delivery-opt selected">
+          <div><div class="do-name">Standard Delivery</div><div class="do-detail">Pickup by 8pm · delivered next day by 8pm</div></div>
+          <div class="do-price">$2.50/lb</div>
+        </div>
+        <div class="delivery-opt">
+          <div><div class="do-name">Express Overnight</div><div class="do-detail">Same-day pickup · delivered by 10am next morning</div></div>
+          <div class="do-price">$5.00/lb</div>
+        </div>
+      </div>
+      <div class="detergent-row">
+        <span style="color:rgba(200,191,168,0.3)">Detergent</span>
+        <span>Classic Scented · Unscented Hypoallergenic · I'll Provide Mine</span>
+      </div>
+    </div>
+    <div class="laundry-right reveal reveal-delay-2">
+      <div class="section-eyebrow"><span>Laundry Service</span></div>
+      <h2 class="laundry-title">Pickup. Wash. <em>Fold. Return.</em></h2>
+      <p class="laundry-desc">Life is too short for laundromats and laundry days that eat up your whole Sunday. Tell us exactly how you like it done and we do it that way, every time — right down to how you want your comforter handled.</p>
+      <div class="laundry-specs">
+        <div class="spec-row"><span class="spec-label">Standard rate</span><span class="spec-val"><strong>$2.50/lb</strong> · $50 minimum</span></div>
+        <div class="spec-row"><span class="spec-label">Express overnight</span><span class="spec-val"><strong>$5.00/lb</strong> · $70 minimum</span></div>
+        <div class="spec-row"><span class="spec-label">Care options</span><span class="spec-val">Delicate cycle, hang dry, return on hangers</span></div>
+        <div class="spec-row"><span class="spec-label">Oversized items</span><span class="spec-val"><strong>$20 each</strong> — comforters, duvets, pillows</span></div>
+        <div class="spec-row"><span class="spec-label">Laundry add-on during cleaning</span><span class="spec-val"><strong>$40–$110</strong> by load count</span></div>
+        <div class="spec-row"><span class="spec-label">Safety certification</span><span class="spec-val">Required at booking — your items protected</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="proof">
+  <div class="proof-inner">
+    <div class="reveal">
+      <div class="section-eyebrow"><span>Why Clients Stay</span></div>
+      <h2 class="section-title">Built for people who<br><em>value their time.</em></h2>
+    </div>
+    <div class="proof-grid">
+      <div class="proof-card reveal reveal-delay-1">
+        <div class="proof-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="proof-text">"Finally a service that just handles it. I booked once and everything was exactly right. No follow-up, no questions — just done."</p>
+        <div class="proof-name">T.M.</div><div class="proof-location">Raleigh, NC</div>
+      </div>
+      <div class="proof-card reveal reveal-delay-2">
+        <div class="proof-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="proof-text">"As a working professional, the last thing I want to think about is errands and cleaning. Triangle's Concierge has genuinely changed my entire week."</p>
+        <div class="proof-name">A.R.</div><div class="proof-location">Durham, NC</div>
+      </div>
+      <div class="proof-card reveal reveal-delay-3">
+        <div class="proof-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="proof-text">"The booking experience is effortless and the results are consistent. This is exactly what premium home services should feel like."</p>
+        <div class="proof-name">S.J.</div><div class="proof-location">Chapel Hill, NC</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="why-inner">
+    <div class="reveal">
+      <div class="section-eyebrow"><span>Why Triangle's Concierge</span></div>
+      <h2 class="section-title">This is not a<br><em>cleaning company.</em></h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card tall reveal reveal-delay-1">
+        <div class="why-icon">✦</div>
+        <div class="why-title">One team. Every service.</div>
+        <p class="why-desc">You don't need four vendors, four phone numbers, and four different scheduling systems. You need one trusted operation that handles your home the way you'd handle it yourself — if you had the time.</p>
+        <p class="why-desc" style="margin-top:1rem;">That's what we built. A home operations system disguised as a service business. Everything connected. Everything tracked. One point of contact. Zero dropped balls.</p>
+        <div class="why-stat">4</div>
+        <div class="why-stat-label">Services. One team.</div>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-icon">⚡</div>
+        <div class="why-title">Book in under 3 minutes</div>
+        <p class="why-desc">Our booking system captures everything upfront so you never explain your preferences twice. Walk through once. We remember everything after that.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-3">
+        <div class="why-icon">🔒</div>
+        <div class="why-title">Your home. Your rules.</div>
+        <p class="why-desc">Pet safety agreements. Access method preferences. Cleaning product choices. Laundry certifications. We built the intake to protect you and your space at every step.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-icon">💎</div>
+        <div class="why-title">Premium standard. Transparent price.</div>
+        <p class="why-desc">You see the full price before you confirm. Add-ons are itemized. No hidden fees. No last-minute surprises. The concierge experience without the concierge confusion.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-3">
+        <div class="why-icon">📍</div>
+        <div class="why-title">Built for the Triangle.</div>
+        <p class="why-desc">We serve Raleigh, Durham, and Chapel Hill — and we know this market. The professionals, the pacing, the expectations. Local and invested in showing up right every time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta" id="book">
+  <div class="final-cta-inner">
+    <div class="cta-label">Get Started Today</div>
+    <h2>Your home deserves<br><em>better than this.</em></h2>
+    <p>Stop putting it off. Book your first service in under 3 minutes. No account required. No calls. Just choose what you need and we handle everything else.</p>
+    <div class="cta-btns">
+      <a href="#" class="btn-gold">Book a Service Now</a>
+      <a href="partnerships.html" class="btn-outline">Partner With Us</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">The Triangle's <span>Concierge</span></div>
+        <p class="footer-tagline">Premium home services for busy professionals across Raleigh, Durham, and Chapel Hill.</p>
+      </div>
+      <div class="footer-col"><h4>Services</h4><ul><li>House Cleaning</li><li>Laundry Service</li><li>Errand Service</li><li>Concierge Management</li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li>How It Works</li><li>Pricing</li><li><a href="partnerships.html">Partnerships</a></li><li>FAQs</li></ul></div>
+      <div class="footer-col"><h4>Get Started</h4><ul><li>Book a Service</li><li><a href="partnerships.html">Partner With Us</a></li><li>Contact</li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 The Triangle's Concierge. All rights reserved.</div>
+      <div class="footer-loc">📍 Raleigh · Durham · Chapel Hill, NC</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const cursor=document.getElementById('cursor');
+const ring=document.getElementById('ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);}
+animRing();
+document.querySelectorAll('a,button,.service-item,.price-tile,.why-card,.addon-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.style.width='14px';cursor.style.height='14px';ring.style.width='52px';ring.style.height='52px';});
+  el.addEventListener('mouseleave',()=>{cursor.style.width='8px';cursor.style.height='8px';ring.style.width='36px';ring.style.height='36px';});
+});
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>60);});
+const reveals=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+},{threshold:0.08});
+reveals.forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

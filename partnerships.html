@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Partnerships — The Triangle's Concierge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #F7F4EE; --cream-dark: #EDE9DF; --forest: #1C2B1E; --forest-mid: #2E4430;
+    --sage: #6B8C6E; --sage-light: #A8C4AB; --gold: #C4A35A; --gold-light: #E8D5A3;
+    --charcoal: #2A2A25; --muted: #7A776E; --white: #FDFCFA;
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--cream); color: var(--charcoal); font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: rgba(28,43,30,0.95); backdrop-filter: blur(12px); border-bottom: 0.5px solid rgba(196,163,90,0.15); }
+  .nav-logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 400; letter-spacing: 0.08em; color: var(--cream); text-decoration: none; }
+  .nav-logo span { color: var(--gold); }
+  nav ul { display: flex; gap: 2.5rem; list-style: none; }
+  nav a { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+  nav a:hover { color: var(--gold-light); }
+  .nav-cta { background: var(--gold) !important; color: var(--forest) !important; padding: 0.6rem 1.4rem; border-radius: 2px; font-weight: 500; }
+  .btn-primary { background: var(--gold); color: var(--forest); padding: 1rem 2.25rem; font-family: var(--font-body); font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: background 0.25s, transform 0.15s; display: inline-block; font-weight: 500; }
+  .btn-primary:hover { background: #b8963c; transform: translateY(-1px); }
+  .section-label { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+  .section-label::before { content: ''; width: 2rem; height: 0.5px; background: var(--gold); display: block; }
+  .section-title { font-family: var(--font-display); font-size: clamp(2.2rem, 3.5vw, 3.5rem); font-weight: 300; line-height: 1.1; color: var(--forest); }
+  .section-title em { font-style: italic; color: var(--sage); }
+  .section-desc { font-size: 0.95rem; color: var(--muted); line-height: 1.9; font-weight: 300; }
+  .section-header { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 5rem; align-items: end; }
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* PARTNER HERO */
+  .partner-hero { background: var(--forest); padding: 10rem 3rem 8rem; position: relative; overflow: hidden; }
+  .partner-hero::after { content: 'PARTNERSHIPS'; position: absolute; bottom: -1.5rem; left: -1rem; font-family: var(--font-display); font-size: 12rem; font-weight: 300; color: rgba(255,255,255,0.03); letter-spacing: 0.1em; white-space: nowrap; pointer-events: none; }
+  .partner-hero-inner { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; position: relative; z-index: 1; }
+  .partner-hero h2 { font-family: var(--font-display); font-size: clamp(2.5rem, 4vw, 4.5rem); font-weight: 300; color: var(--white); line-height: 1.05; margin-top: 1rem; }
+  .partner-hero h2 em { font-style: italic; color: var(--gold-light); }
+  .partner-hero-right p { font-size: 0.95rem; color: rgba(168,196,171,0.8); line-height: 1.9; font-weight: 300; margin-bottom: 1.25rem; }
+  .partner-hero-stats { display: flex; gap: 2.5rem; margin-top: 3rem; border-top: 0.5px solid rgba(196,163,90,0.2); padding-top: 2rem; }
+  .p-stat-num { font-family: var(--font-display); font-size: 2rem; font-weight: 300; color: var(--gold-light); margin-bottom: 0.2rem; line-height: 1.1; }
+  .partner-hero-stats .p-stat-num { font-size: clamp(1.3rem, 2vw, 2rem); }
+  .p-stat-label { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(168,196,171,0.6); }
+
+  /* WHO WE SERVE */
+  .who { background: var(--cream-dark); padding: 7rem 3rem; }
+  .who-inner { max-width: 1300px; margin: 0 auto; }
+  .who-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem; }
+  .who-card { background: var(--white); padding: 2rem; border-radius: 2px; border-top: 2px solid var(--sage); }
+  .who-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+  .who-title { font-family: var(--font-display); font-size: 1.25rem; font-weight: 400; color: var(--forest); margin-bottom: 0.75rem; }
+  .who-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.8; font-weight: 300; }
+
+  /* PARTNER TIERS */
+  .partner-tiers { padding: 8rem 3rem; max-width: 1300px; margin: 0 auto; }
+  .tiers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 4rem; }
+  .tier-card { border: 0.5px solid var(--cream-dark); border-radius: 2px; overflow: hidden; }
+  .tier-header { padding: 2rem; border-bottom: 0.5px solid var(--cream-dark); }
+  .tier-card:nth-child(1) .tier-header { background: var(--cream-dark); }
+  .tier-card:nth-child(2) .tier-header { background: var(--forest); }
+  .tier-card:nth-child(3) .tier-header { background: var(--gold); }
+  .tier-name { font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; color: var(--forest); margin-bottom: 0.25rem; }
+  .tier-card:nth-child(2) .tier-name { color: var(--gold-light); }
+  .tier-card:nth-child(3) .tier-name { color: var(--forest); }
+  .tier-sub { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .tier-card:nth-child(2) .tier-sub { color: var(--sage-light); }
+  .tier-card:nth-child(3) .tier-sub { color: var(--forest-mid); }
+  .tier-body { padding: 2rem; background: var(--white); }
+  .tier-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.8; margin-bottom: 1.5rem; font-weight: 300; }
+  .tier-perks { list-style: none; margin-bottom: 2rem; }
+  .tier-perks li { font-size: 0.8rem; color: var(--charcoal); padding: 0.5rem 0; border-top: 0.5px solid var(--cream-dark); display: flex; align-items: flex-start; gap: 0.6rem; font-weight: 300; }
+  .tier-perks li::before { content: '—'; color: var(--gold); flex-shrink: 0; font-size: 0.7rem; line-height: 1.6; }
+  .tier-cta { display: block; text-align: center; padding: 0.85rem 1.5rem; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: all 0.2s; }
+  .tier-card:nth-child(1) .tier-cta { border: 0.5px solid var(--forest); color: var(--forest); }
+  .tier-card:nth-child(1) .tier-cta:hover { background: var(--forest); color: var(--cream); }
+  .tier-card:nth-child(2) .tier-cta { background: var(--forest); color: var(--cream); }
+  .tier-card:nth-child(2) .tier-cta:hover { background: var(--forest-mid); }
+  .tier-card:nth-child(3) .tier-cta { background: var(--gold); color: var(--forest); font-weight: 500; }
+  .tier-card:nth-child(3) .tier-cta:hover { background: #b8963c; }
+
+  /* CONTACT */
+  .partner-contact { padding: 8rem 3rem; max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+  .contact-label { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+  .contact-label::before { content: ''; width: 2rem; height: 0.5px; background: var(--gold); display: block; }
+  .contact-title { font-family: var(--font-display); font-size: clamp(2rem, 3vw, 3rem); font-weight: 300; color: var(--forest); line-height: 1.15; margin-bottom: 1.5rem; }
+  .contact-title em { font-style: italic; color: var(--sage); }
+  .contact-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.9; font-weight: 300; margin-bottom: 2.5rem; }
+  .contact-detail { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-item { display: flex; align-items: center; gap: 1rem; font-size: 0.85rem; color: var(--charcoal); }
+  .contact-item-icon { width: 36px; height: 36px; border: 0.5px solid var(--cream-dark); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; color: var(--sage); }
+  .contact-form-area { background: var(--white); border: 0.5px solid var(--cream-dark); border-radius: 2px; padding: 2.5rem; }
+  .contact-form-area h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 400; color: var(--forest); margin-bottom: 0.5rem; }
+  .contact-form-area p { font-size: 0.8rem; color: var(--muted); margin-bottom: 2rem; font-weight: 300; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+  .form-group label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .form-group input, .form-group select, .form-group textarea { border: 0.5px solid var(--cream-dark); border-radius: 2px; padding: 0.75rem 1rem; font-family: var(--font-body); font-size: 0.85rem; color: var(--charcoal); background: var(--cream); outline: none; transition: border-color 0.2s; font-weight: 300; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--sage); }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .form-submit { width: 100%; background: var(--forest); color: var(--cream); border: none; padding: 1rem; font-family: var(--font-body); font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; border-radius: 2px; cursor: pointer; transition: background 0.2s; }
+  .form-submit:hover { background: var(--forest-mid); }
+
+  /* FOOTER */
+  footer { background: var(--charcoal); padding: 4rem 3rem 2rem; }
+  .footer-inner { max-width: 1300px; margin: 0 auto; }
+  .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 0.5px solid rgba(255,255,255,0.08); }
+  .footer-brand { font-family: var(--font-display); font-size: 1.1rem; font-weight: 300; color: var(--cream); margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .footer-brand span { color: var(--gold); }
+  .footer-tagline { font-size: 0.8rem; color: rgba(255,255,255,0.4); line-height: 1.7; font-weight: 300; max-width: 220px; }
+  .footer-col h4 { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; }
+  .footer-col ul { list-style: none; }
+  .footer-col li { font-size: 0.8rem; color: rgba(255,255,255,0.45); padding: 0.3rem 0; font-weight: 300; }
+  .footer-col a { color: inherit; text-decoration: none; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--cream); }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 0.72rem; color: rgba(255,255,255,0.25); letter-spacing: 0.05em; }
+  .footer-location { font-size: 0.72rem; color: rgba(255,255,255,0.25); }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; } nav ul { gap: 1rem; }
+    .partner-hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .partner-hero { padding: 8rem 1.5rem 5rem; }
+    .section-header { grid-template-columns: 1fr; }
+    .who-grid { grid-template-columns: 1fr 1fr; }
+    .tiers-grid { grid-template-columns: 1fr; }
+    .partner-contact { grid-template-columns: 1fr; padding: 4rem 1.5rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .partner-tiers { padding: 4rem 1.5rem; }
+    .who { padding: 4rem 1.5rem; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">The Triangle's <span>Concierge</span></a>
+  <ul>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#pricing">Pricing</a></li>
+    <li><a href="partnerships.html" style="color: var(--gold-light);">Partnerships</a></li>
+    <li><a href="index.html#book" class="nav-cta">Book a Service</a></li>
+  </ul>
+</nav>
+
+<section class="partner-hero">
+  <div class="partner-hero-inner">
+    <div>
+      <div class="section-label">Partner With Us</div>
+      <h2>Let's serve your <em>community together.</em></h2>
+      <div class="partner-hero-stats">
+        <div><div class="p-stat-num">The Triangle</div><div class="p-stat-label">Raleigh · Durham · Chapel Hill</div></div>
+        <div><div class="p-stat-num">4</div><div class="p-stat-label">Premium services</div></div>
+        <div><div class="p-stat-num">1</div><div class="p-stat-label">Point of contact</div></div>
+      </div>
+    </div>
+    <div class="partner-hero-right">
+      <p>The Triangle's Concierge partners with luxury apartment communities, property management firms, corporate housing providers, relocation companies, and premium residential brands across Raleigh, Durham, and Chapel Hill.</p>
+      <p>If your clients are busy professionals who care about the quality of their home experience, we are the resource that makes you look good for offering it.</p>
+      <a href="#partner-contact" class="btn-primary" style="margin-top: 0.5rem;">See Partnership Options →</a>
+    </div>
+  </div>
+</section>
+
+<section class="who">
+  <div class="who-inner">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label">Our Clients</div>
+        <h2 class="section-title">Your residents.<br><em>Our clients.</em></h2>
+      </div>
+      <p class="section-desc">We serve the same people your communities are built for — high-earning professionals who want their time back and their home handled with care. A partnership with us is a value-add for everyone in the room.</p>
+    </div>
+    <div class="who-grid reveal">
+      <div class="who-card">
+        <div class="who-icon">💼</div>
+        <div class="who-title">Working Professionals</div>
+        <p class="who-desc">Remote workers, dual-income households, and executives who need reliable home support without the management overhead.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-icon">🏙️</div>
+        <div class="who-title">New Residents & Relocators</div>
+        <p class="who-desc">People moving to the Triangle who need immediate, trusted home service as they settle in — often before they know where to look.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-icon">🏡</div>
+        <div class="who-title">Luxury Renters & Homeowners</div>
+        <p class="who-desc">Residents in premium properties who expect premium service and are willing to pay for consistency, quality, and convenience.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="partner-tiers">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-label">Partnership Options</div>
+      <h2 class="section-title">Three ways to<br><em>work together.</em></h2>
+    </div>
+    <p class="section-desc">We don't do cookie-cutter partnerships. Whether you want to list us in a welcome packet, offer exclusive resident discounts, or create a fully branded concierge program, we'll build something that works for your community.</p>
+  </div>
+  <div class="tiers-grid reveal">
+    <div class="tier-card">
+      <div class="tier-header">
+        <div class="tier-name">Directory Listing</div>
+        <div class="tier-sub">Preferred Vendor</div>
+      </div>
+      <div class="tier-body">
+        <p class="tier-desc">Get listed as a trusted resource in your resident onboarding materials, welcome packets, or community directory.</p>
+        <ul class="tier-perks">
+          <li>Featured in your resident welcome packet or portal</li>
+          <li>Branded one-pager with QR code to booking page</li>
+          <li>Preferred vendor status with your management team</li>
+          <li>No cost to the property — resident-direct billing</li>
+          <li>Quarterly check-ins to ensure alignment</li>
+        </ul>
+        <a href="#partner-contact" class="tier-cta">Get Listed</a>
+      </div>
+    </div>
+    <div class="tier-card">
+      <div class="tier-header">
+        <div class="tier-name">Resident Perks</div>
+        <div class="tier-sub">Community Partner</div>
+      </div>
+      <div class="tier-body">
+        <p class="tier-desc">Offer your residents an exclusive discount or priority booking as a community amenity — at no cost to you.</p>
+        <ul class="tier-perks">
+          <li>Custom discount code for your residents (10–15%)</li>
+          <li>Priority scheduling for your community</li>
+          <li>Co-branded materials for your amenity program</li>
+          <li>Move-in gift package option for new residents</li>
+          <li>Monthly usage report for your records</li>
+          <li>No cost to the property — resident-direct billing</li>
+        </ul>
+        <a href="#partner-contact" class="tier-cta">Become a Partner</a>
+      </div>
+    </div>
+    <div class="tier-card">
+      <div class="tier-header">
+        <div class="tier-name">Branded Concierge</div>
+        <div class="tier-sub">White-Label Program</div>
+      </div>
+      <div class="tier-body">
+        <p class="tier-desc">For communities that want to offer a fully branded concierge experience as a premium amenity — powered by us, presented as you.</p>
+        <ul class="tier-perks">
+          <li>White-labeled booking portal with your branding</li>
+          <li>Dedicated service team for your property</li>
+          <li>Custom service menu aligned to your resident profile</li>
+          <li>Priority same-day availability for residents</li>
+          <li>Monthly performance reporting & resident satisfaction data</li>
+          <li>Dedicated account manager</li>
+          <li>Annual partnership agreement with flexible terms</li>
+        </ul>
+        <a href="#partner-contact" class="tier-cta">Let's Build This</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="partner-contact" id="partner-contact">
+  <div>
+    <div class="contact-label">Get In Touch</div>
+    <h2 class="contact-title">Let's start the <em>conversation.</em></h2>
+    <p class="contact-desc">Send us a message and we'll follow up within 24 hours with a partnership overview tailored to your community. No pressure — just a real conversation about whether we're a fit.</p>
+    <div class="contact-detail">
+      <div class="contact-item"><div class="contact-item-icon">📍</div>Raleigh–Durham–Chapel Hill, NC</div>
+      <div class="contact-item"><div class="contact-item-icon">✉</div><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="30405142445e5542435859404370444259515e575c5543535f5e5359554257551e535f5d">[email&#160;protected]</a></div>
+      <div class="contact-item"><div class="contact-item-icon">⏱</div>Response within 24 hours</div>
+    </div>
+  </div>
+  <div class="contact-form-area">
+    <h3>Partner Interest Form</h3>
+    <p>Tell us a little about your property and what you're looking for.</p>
+    <div class="form-row">
+      <div class="form-group"><label>Your Name</label><input type="text" placeholder="First Last"></div>
+      <div class="form-group"><label>Title / Role</label><input type="text" placeholder="Property Manager"></div>
+    </div>
+    <div class="form-group"><label>Property or Company Name</label><input type="text" placeholder="Luxury at North Hills"></div>
+    <div class="form-group"><label>Email Address</label><input type="email" placeholder="you@property.com"></div>
+    <div class="form-group">
+      <label>Partnership Interest</label>
+      <select>
+        <option value="">Select one...</option>
+        <option>Directory Listing / Welcome Packet</option>
+        <option>Resident Perks / Discount Program</option>
+        <option>Branded Concierge Program</option>
+        <option>Not sure — tell me more</option>
+      </select>
+    </div>
+    <div class="form-group"><label>Tell us about your community</label><textarea placeholder="Number of units, location, resident profile, what you're hoping to offer..."></textarea></div>
+    <button class="form-submit">Send Partnership Inquiry →</button>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">The Triangle's <span>Concierge</span></div>
+        <p class="footer-tagline">Premium home services for busy professionals across the Raleigh–Durham–Chapel Hill area.</p>
+      </div>
+      <div class="footer-col"><h4>Services</h4><ul><li><a href="index.html#services">House Cleaning</a></li><li><a href="index.html#services">Laundry Service</a></li><li><a href="index.html#services">Errand Service</a></li><li><a href="index.html#services">Concierge Management</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="index.html">Home</a></li><li><a href="index.html#pricing">Pricing</a></li><li><a href="partnerships.html">Partnerships</a></li></ul></div>
+      <div class="footer-col"><h4>Get Started</h4><ul><li><a href="index.html#book">Book a Service</a></li><li><a href="#partner-contact">Partner With Us</a></li><li>Contact</li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 The Triangle's Concierge. All rights reserved.</div>
+      <div class="footer-location">📍 Raleigh · Durham · Chapel Hill, NC</div>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      
